@@ -7,20 +7,119 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+	let res = 1;
+	if (n < 0) {
+		return null;
+	}
+	for (var i = 1; i <= n; i++) {
+		res *= i;
+		factorial(n[i]);
+	}
+	return res;
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+	let sumArr = 0;
+	for (var i = 0; i < array.length; i++) {
+		sumArr += array[i];
+	}
+	return sumArr;
+
+
+	// let inner = function(array) {
+	// 	// sum += array[0+1]
+
+	// 	for(var i = 0; i <= array.length; i++) {
+	// 		sumArr += array[0];
+
+	// 		array.shift();
+
+	// 		sum(array[i])
+	// 	}
+	// }
+	// return sumArr;
+
+
+
+
+	// //create var sumArr, set to 0
+	// let sumArr = 0
+	// let inner = function(array) {
+	// //loop through array from start to end of array
+	// 	for (var i = 0; i < array.length; i++) {
+	// 		//add i to sumArr
+	// 		sumArr += array[i];
+	// 		//run recursion use array[i] as parameter
+	// 		inner(array[i])
+	// 	//close loop
+	// 	}
+	// 	inner(array)
+	// }	
+	// //return sumArr
+	// return sumArr;
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
+		let sumOfNested = 0;
 var arraySum = function(array) {
+	for(var i = 0; i < array.length; i++) {
+		if(typeof array[i] === 'numer') {
+			debugger;
+			sumOfNested += array[i];
+		} else {
+			arraySum(array[i])
+
+		}
+	}
+	console.log(sumOfNested)
+	return sumOfNested;
+
+
+
+
+
+
+	// //create sum variable to store sum, set to 0
+	// let sum = 0;
+	// //crete inner function
+	// let inner = function(array) {
+	// 	//loop through array from start to end
+	// 	for(var i = 0; i < array.length; i++) {
+	// 		//add each elem to sum
+	// 		sum += array[i];
+	// 		//recurse at that value back to loop
+	// 		inner(array[i])
+	// 	//close loop
+	// 	}
+	// //close inner function
+	// }
+	// //run inner function
+	// inner(array);
+	// //return sum variable
+	// return sum;
+	// 	//if array[i] is an array
+	// 		//iterate through that array
+	// 		//add each elem to sum
+
+
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+	let flag = false;
+
+
+
+
+	let flag = false;
+	if (n %2 === 0) {
+		flag = true
+	}
+	return flag;
 };
 
 // 5. Sum all integers below a given integer.
