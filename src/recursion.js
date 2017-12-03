@@ -20,47 +20,25 @@ var factorial = function(n) {
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
+let sumElem = function (array) {
+  let resSumArrayValues = 0;
 var sum = function(array) {
-	let sumArr = 0;
-	for (var i = 0; i < array.length; i++) {
-		sumArr += array[i];
+  
+  
+  	if (array.length >= 1) {
+
+	//create res var to hold sum
+	resSumArrayValues += array[0]
+	// add first elem of arr to res
+	array.shift();
+		// keep running inner
+		sum(array)
 	}
-	return sumArr;
+  }
+  sum(array)
+  return resSumArrayValues
 
-
-	// let inner = function(array) {
-	// 	// sum += array[0+1]
-
-	// 	for(var i = 0; i <= array.length; i++) {
-	// 		sumArr += array[0];
-
-	// 		array.shift();
-
-	// 		sum(array[i])
-	// 	}
-	// }
-	// return sumArr;
-
-
-
-
-	// //create var sumArr, set to 0
-	// let sumArr = 0
-	// let inner = function(array) {
-	// //loop through array from start to end of array
-	// 	for (var i = 0; i < array.length; i++) {
-	// 		//add i to sumArr
-	// 		sumArr += array[i];
-	// 		//run recursion use array[i] as parameter
-	// 		inner(array[i])
-	// 	//close loop
-	// 	}
-	// 	inner(array)
-	// }	
-	// //return sumArr
-	// return sumArr;
-
-};
+}
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
@@ -75,7 +53,6 @@ var arraySum = function(array) {
 
 		}
 	}
-	console.log(sumOfNested)
 	return sumOfNested;
 
 
