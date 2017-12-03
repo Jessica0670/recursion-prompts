@@ -19,89 +19,55 @@ var factorial = function(n) {
 };
 
 // 2. Compute the sum of an array of integers.
-// sum([1,2,3,4,5,6]); // 21
 let sumElem = function (array) {
+  //create res var to hold sum
   let resSumArrayValues = 0;
-var sum = function(array) {
-  
-  
+  var sum = function(array) { 
   	if (array.length >= 1) {
-
-	//create res var to hold sum
-	resSumArrayValues += array[0]
-	// add first elem of arr to res
-	array.shift();
-		// keep running inner
-		sum(array)
-	}
+	    resSumArrayValues += array[0]
+	    // add first elem of arr to res
+	    //delete first elem
+	    array.shift();
+		  // keep running inner
+		  sum(array)
+	  }
   }
   sum(array)
   return resSumArrayValues
 
 }
 
-// 3. Sum all numbers in an array containing nested arrays.
-// arraySum([1,[2,3],[[4]],5]); // 15
-let resultSum = 0;
-let sumElem = function (array) {
-  for (var i = 0; i < array.length; i++) {
-    if (typeof array[i] === 'number') {
-      resultSum += array[i]
-    } else if (Array.isArray(array[i])) {
-      sumElem(array)
-    }
-  }
-return resultSum
-}
-sumElem(array)
+sumElem([1,2,3,4,5,6]); // 21
 
-// let sumElem = function (array) {
+// 3. Sum all numbers in an array containing nested arrays.
+// // arraySum([1,[2,3],[[4]],5]); // 15
 // let resultSum = 0;
-// for (var i = 0; i < array.length; i++) {
-//   resultSum += array[i];
-// }
+// let sumElem = function (array) {
+//   for (var i = 0; i < array.length; i++) {
+//     if (typeof array[i] === 'number') {
+//       resultSum += array[i]
+//     } else if (Array.isArray(array[i])) {
+//       sumElem(array)
+//     }
+//   }
 // return resultSum
 // }
 
 
 
-
-	// //create sum variable to store sum, set to 0
-	// let sum = 0;
-	// //crete inner function
-	// let inner = function(array) {
-	// 	//loop through array from start to end
-	// 	for(var i = 0; i < array.length; i++) {
-	// 		//add each elem to sum
-	// 		sum += array[i];
-	// 		//recurse at that value back to loop
-	// 		inner(array[i])
-	// 	//close loop
-	// 	}
-	// //close inner function
-	// }
-	// //run inner function
-	// inner(array);
-	// //return sum variable
-	// return sum;
-	// 	//if array[i] is an array
-	// 		//iterate through that array
-	// 		//add each elem to sum
-
-
-};
-
 // 4. Check if a number is even.
 var isEven = function(n) {
 	let flag = false;
-
-
-
-
-	let flag = false;
-	if (n %2 === 0) {
-		flag = true
-	}
+	//divide number by 2 and set number to a var
+	let half = n / 2;
+	//check if that number is a whole number
+	let checkWholeNum = Math.floor(half);
+	  //if it is, set flag to true
+	  if (half === checkWholeNum) {
+	    flag = true
+	  }
+	//else
+	  //return flag
 	return flag;
 };
 
@@ -109,13 +75,66 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  //create container for array
+  let sumBelowArray = [];
+  //create var for sum = 0
+  let sumBelowResult = 0;
+  if (n === 1 || n === 0) {
+    return 0
+  }
+  //loop n number of times - 1
+  for(var i = 1; i < n; i++) {
+    //push each number to container
+    sumBelowArray.push(i) //should contain numbers below n//
+  //close loop
+  }
+  //create inner function
+  let innerSumBelow = function(sumBelowArray) {
+    //add result var to first elem
+    sumBelowResult += sumBelowArray[0]
+    //remove that first value
+    sumBelowArray.shift();
+    //if the array still has values
+    if (sumBelowArray.length >= 1) {
+      //run inner function again starting from new array value
+      innerSumBelow(sumBelowArray)
+    //close condition
+    }
+  //close inner function
+  }
+  innerSumBelow(sumBelowArray)
+  //return result container
+  return sumBelowResult
 };
+// sumBelow(n)
+
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if (x === y || x + 1 === y) {
+  	return [];
+  }
+  //create array container
+  let rangeArray = []
+  //push x + 1 into array
+  rangeArray.push(x + 1);
+  //create inner range function
+  let innerRange = function(rangeArray) {
+      //push last elem of array value + 1 into array
+      rangeArray.push(rangeArray[rangeArray.length - 1] + 1)
+    //if last elem in array doesnt = y - 1
+    if (rangeArray[rangeArray.length - 1] !== y - 1) {
+      //run inner function
+      innerRange(rangeArray);
+    //close condition
+    }
+    //close inner
+  }
+  innerRange(rangeArray)
+  //return array
+  return rangeArray;
 };
-
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
