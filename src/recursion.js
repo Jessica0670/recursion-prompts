@@ -42,20 +42,26 @@ var sum = function(array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-		let sumOfNested = 0;
-var arraySum = function(array) {
-	for(var i = 0; i < array.length; i++) {
-		if(typeof array[i] === 'numer') {
-			debugger;
-			sumOfNested += array[i];
-		} else {
-			arraySum(array[i])
+let resultSum = 0;
+let sumElem = function (array) {
+  for (var i = 0; i < array.length; i++) {
+    if (typeof array[i] === 'number') {
+      resultSum += array[i]
+    } else if (Array.isArray(array[i])) {
+      sumElem(array)
+    }
+  }
+return resultSum
+}
+sumElem(array)
 
-		}
-	}
-	return sumOfNested;
-
-
+// let sumElem = function (array) {
+// let resultSum = 0;
+// for (var i = 0; i < array.length; i++) {
+//   resultSum += array[i];
+// }
+// return resultSum
+// }
 
 
 
