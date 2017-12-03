@@ -112,26 +112,49 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-  if (x === y || x + 1 === y) {
-  	return [];
-  }
   //create array container
   let rangeArray = []
   //push x + 1 into array
-  rangeArray.push(x + 1);
-  //create inner range function
-  let innerRange = function(rangeArray) {
+  if (x === y || x === y - 1) {
+  	return [];
+  }
+  if (x < y) {
+    rangeArray.push(x + 1);
+  } else if (x > y) {
+    rangeArray.push(x - 1)
+  }
+  //create inner range function x < y
+  let innerRangeIncrease = function(rangeArray) {
       //push last elem of array value + 1 into array
       rangeArray.push(rangeArray[rangeArray.length - 1] + 1)
     //if last elem in array doesnt = y - 1
     if (rangeArray[rangeArray.length - 1] !== y - 1) {
       //run inner function
-      innerRange(rangeArray);
+      innerRangeIncrease(rangeArray);
     //close condition
     }
     //close inner
   }
-  innerRange(rangeArray)
+  
+  //create inner function for x > y
+    let innerRangeDecrease = function(rangeArray) {
+      //push last elem of array value -1 into array
+      rangeArray.push(rangeArray[rangeArray.length - 1] - 1)
+    //if last elem in array doesnt = y + 1
+    if (rangeArray[rangeArray.length - 1] !== y + 1) {
+      //run inner function
+      innerRangeDecrease(rangeArray);
+    //close condition
+    }
+  //close function for negative numbers
+  }
+  
+  //create condition for increase or decrease
+  if (x < y) {
+    innerRangeIncrease(rangeArray);
+  } else if (x > y) {
+    innerRangeDecrease(rangeArray);
+  }
   //return array
   return rangeArray;
 };
@@ -141,7 +164,29 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  // create var to hold result = 1
+  if (exp === 0) {
+  	return 1;
+  }
+  let expRes = 1;
+  //create inner function
+  let innerExpFunc = function(base, exp) {
+    //multiply result *= base
+    expRes *= base
+    //subract 1 from exp
+    exp = exp - 1 //2 , 1
+    if (exp !== 0) {
+      innerExpFunc(base, exp)
+    }
+  //close inner function
+  }
+  //invoke inner 
+  innerExpFunc(base, exp)
+  //return result
+  return expRes;
 };
+
+// exponent(3, 4); //81
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
