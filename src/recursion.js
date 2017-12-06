@@ -197,11 +197,96 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  //create new arr container
+  let revArr = [];
+  //split string into array
+  let splitArr = string.split("");
+  //create inner function
+  let innerRev = (string) => {
+    //create for loop iterating backwards
+    for (var i = splitArr.length - 1; i >= 0; --i) {;
+      //push last element in first
+      revArr.push(splitArr[splitArr.length - 1])
+      //cut out that elem from splitArr
+      splitArr.pop();
+    //close for loop
+    }
+    //if (splitArr.length !== 0) {
+    if (splitArr.length !== 0) {
+        // run inner function
+        innerRev(string);
+    // close condition
+    }
+  //close inner function
+  }
+  //invoke inner function
+  innerRev(string);
+  //return revArr.join("")
+  return revArr.join("");
+  
+    // return arr.reverse().join("")
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  //create arr container empty
+  let compare = [];
+  //split string to arr
+  string.toLowerCase();
+  let arr = string.split("");
+  for (var j = 0; j < arr.length; j++) {
+    if(arr[j] === ' ') {
+      arr.splice(j, 1)
+    }
+  }
+  let test = arr.slice();
+  //create inner function
+  let inner = function (string) {
+    //loop through split arr
+    for (var i = 0; i < arr.length; i++) {
+      //push last elem of split into container
+      compare.push(arr[arr.length - 1]);
+      //pop split
+      arr.pop();
+      //if split length > 0
+      if(arr.length >= 1) {
+        //invoke inner
+        inner(string);
+      //close if
+      }
+    //close loop
+    }
+  //close inner function
+  }
+  //invoke inner
+  inner()
+  //compare string to container
+  let newTest = test.join("")
+  let newCompare = compare.join("")
+  return newTest.toLowerCase() === newCompare.toLowerCase() ? true : false;
 };
+
+
+
+// let string = 'abby';
+// let reverseArray = [];
+// var palindrome = function(string) {
+//   let splitArray = string.split("");
+//   for (var i = 0; i < splitArray.length; i++) {
+//     reverseArray.push(splitArray[splitArray.length - 1])
+//     splitArray.pop()
+//   }
+//   if (splitArray.length === 0) {
+//     reverseArray.join("");
+//   } else {
+//     palindrome(splitArray)
+//   }
+//   console.log(reverseArray)
+//   return string === reverseArray.join("") ? true : false;
+
+// };
+
+// palindrome(string)
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -209,11 +294,22 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  //compare difference of x/y and Math.floor(x/y)
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
+let multiplyRes = 0;
 var multiply = function(x, y) {
+  //add x to x, y times
+  for(var i = 0; i <= y; i++) {
+    multiplyRes += x
+    y--
+  }
+  if(y > 0) {
+    multiply(x, y);
+  }
+  return multiplyRes;
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
