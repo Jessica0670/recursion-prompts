@@ -301,7 +301,12 @@ var modulo = function(x, y) {
 // Math methods.
 let multiplyRes = 0;
 var multiply = function(x, y) {
-  //add x to x, y times
+  if (y < 0) {
+    for(var j = y; j <= 0; j++){
+      multiplyRes -= x
+      y++
+    } 
+  }
   for(var i = 0; i <= y; i++) {
     multiplyRes += x
     y--
@@ -310,6 +315,7 @@ var multiply = function(x, y) {
     multiply(x, y);
   }
   return multiplyRes;
+
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
