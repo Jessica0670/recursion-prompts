@@ -41,35 +41,37 @@ var isEven = function(n) {
 // sumBelow(7); // 21
 var sumBelow = function(n) {
   //create container for array
-  let sumBelowArray = [];
-  //create var for sum = 0
-  let sumBelowResult = 0;
-  if (n === 1 || n === 0) {
-    return 0
-  }
-  //loop n number of times - 1
-  for(var i = 1; i < n; i++) {
-    //push each number to container
-    sumBelowArray.push(i) //should contain numbers below n//
-  //close loop
-  }
-  //create inner function
-  let innerSumBelow = function(sumBelowArray) {
-    //add result var to first elem
-    sumBelowResult += sumBelowArray[0]
-    //remove that first value
-    sumBelowArray.shift();
-    //if the array still has values
-    if (sumBelowArray.length >= 1) {
-      //run inner function again starting from new array value
-      innerSumBelow(sumBelowArray)
-    //close condition
-    }
-  //close inner function
-  }
-  innerSumBelow(sumBelowArray)
-  //return result container
-  return sumBelowResult
+  return n === 0 ? 0 : (n-1) + sumBelow(n - 1)
+
+  // let sumBelowArray = [];
+  // //create var for sum = 0
+  // let sumBelowResult = 0;
+  // if (n === 1 || n === 0) {
+  //   return 0
+  // }
+  // //loop n number of times - 1
+  // for(var i = 1; i < n; i++) {
+  //   //push each number to container
+  //   sumBelowArray.push(i) //should contain numbers below n//
+  // //close loop
+  // }
+  // //create inner function
+  // let innerSumBelow = function(sumBelowArray) {
+  //   //add result var to first elem
+  //   sumBelowResult += sumBelowArray[0]
+  //   //remove that first value
+  //   sumBelowArray.shift();
+  //   //if the array still has values
+  //   if (sumBelowArray.length >= 1) {
+  //     //run inner function again starting from new array value
+  //     innerSumBelow(sumBelowArray)
+  //   //close condition
+  //   }
+  // //close inner function
+  // }
+  // innerSumBelow(sumBelowArray)
+  // //return result container
+  // return sumBelowResult
 };
 // sumBelow(n)
 
@@ -77,78 +79,68 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-  //create array container
-  let rangeArray = []
-  //push x + 1 into array
-  if (x === y || x === y - 1) {
-  	return [];
+let array = [] // array container
+  if (x === y) {
+    return array;
   }
-  if (x < y) {
-    rangeArray.push(x + 1);
-  } else if (x > y) {
-    rangeArray.push(x - 1)
-  }
-  //create inner range function x < y
-  let innerRangeIncrease = function(rangeArray) {
-      //push last elem of array value + 1 into array
-      rangeArray.push(rangeArray[rangeArray.length - 1] + 1)
-    //if last elem in array doesnt = y - 1
-    if (rangeArray[rangeArray.length - 1] !== y - 1) {
-      //run inner function
-      innerRangeIncrease(rangeArray);
-    //close condition
-    }
-    //close inner
-  }
+  array.push(x) //creates single elem array
+  return array.concat(range(x + 1, y)) //joins the single elem arrays
+}
+  // //create array container
+  // let rangeArray = []
+  // //push x + 1 into array
+  // if (x === y || x === y - 1) {
+  // 	return [];
+  // }
+  // if (x < y) {
+  //   rangeArray.push(x + 1);
+  // } else if (x > y) {
+  //   rangeArray.push(x - 1)
+  // }
+  // //create inner range function x < y
+  // let innerRangeIncrease = function(rangeArray) {
+  //     //push last elem of array value + 1 into array
+  //     rangeArray.push(rangeArray[rangeArray.length - 1] + 1)
+  //   //if last elem in array doesnt = y - 1
+  //   if (rangeArray[rangeArray.length - 1] !== y - 1) {
+  //     //run inner function
+  //     innerRangeIncrease(rangeArray);
+  //   //close condition
+  //   }
+  //   //close inner
+  // }
   
-  //create inner function for x > y
-    let innerRangeDecrease = function(rangeArray) {
-      //push last elem of array value -1 into array
-      rangeArray.push(rangeArray[rangeArray.length - 1] - 1)
-    //if last elem in array doesnt = y + 1
-    if (rangeArray[rangeArray.length - 1] !== y + 1) {
-      //run inner function
-      innerRangeDecrease(rangeArray);
-    //close condition
-    }
-  //close function for negative numbers
-  }
+  // //create inner function for x > y
+  //   let innerRangeDecrease = function(rangeArray) {
+  //     //push last elem of array value -1 into array
+  //     rangeArray.push(rangeArray[rangeArray.length - 1] - 1)
+  //   //if last elem in array doesnt = y + 1
+  //   if (rangeArray[rangeArray.length - 1] !== y + 1) {
+  //     //run inner function
+  //     innerRangeDecrease(rangeArray);
+  //   //close condition
+  //   }
+  // //close function for negative numbers
+  // }
   
-  //create condition for increase or decrease
-  if (x < y) {
-    innerRangeIncrease(rangeArray);
-  } else if (x > y) {
-    innerRangeDecrease(rangeArray);
-  }
-  //return array
-  return rangeArray;
-};
+  // //create condition for increase or decrease
+  // if (x < y) {
+  //   innerRangeIncrease(rangeArray);
+  // } else if (x > y) {
+  //   innerRangeDecrease(rangeArray);
+  // }
+  // //return array
+  // return rangeArray;
+// };
+
+
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-  // create var to hold result = 1
-  if (exp === 0) {
-  	return 1;
-  }
-  let expRes = 1;
-  //create inner function
-  let innerExpFunc = function(base, exp) {
-    //multiply result *= base
-    expRes *= base
-    //subract 1 from exp
-    exp = exp - 1 //2 , 1
-    if (exp !== 0) {
-      innerExpFunc(base, exp)
-    }
-  //close inner function
-  }
-  //invoke inner 
-  innerExpFunc(base, exp)
-  //return result
-  return expRes;
+  return exp === 0 ? 1 : exp === 1 ? base : base * exponent(base, exp - 1);
 };
 
 // exponent(3, 4); //81
