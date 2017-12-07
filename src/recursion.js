@@ -7,68 +7,33 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
-	let res = 1;
-	if (n < 0) {
-		return null;
-	}
-	for (var i = 1; i <= n; i++) {
-		res *= i;
-		factorial(n[i]);
-	}
-	return res;
+  if (n === 0 || n === 1) {
+    return 1
+  }
+  if (n < 0) {
+    return null
+  }
+  return n * factorial(n - 1)
 };
 
 // 2. Compute the sum of an array of integers.
 let sumElem = function (array) {
-  //create res var to hold sum
-  let resSumArrayValues = 0;
-  var sum = function(array) { 
-  	if (array.length >= 1) {
-	    resSumArrayValues += array[0]
-	    // add first elem of arr to res
-	    //delete first elem
-	    array.shift();
-		  // keep running inner
-		  sum(array)
-	  }
+  if (array.length === 0) {
+    return 0
   }
-  sum(array)
-  return resSumArrayValues
+  return array[0] + sumElem(array.slice(1)) //restart function with that value
 
 }
 
 sumElem([1,2,3,4,5,6]); // 21
 
-// 3. Sum all numbers in an array containing nested arrays.
-// // arraySum([1,[2,3],[[4]],5]); // 15
-// let resultSum = 0;
-// let sumElem = function (array) {
-//   for (var i = 0; i < array.length; i++) {
-//     if (typeof array[i] === 'number') {
-//       resultSum += array[i]
-//     } else if (Array.isArray(array[i])) {
-//       sumElem(array)
-//     }
-//   }
-// return resultSum
 // }
 
 
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-	let flag = false;
-	//divide number by 2 and set number to a var
-	let half = n / 2;
-	//check if that number is a whole number
-	let checkWholeNum = Math.floor(half);
-	  //if it is, set flag to true
-	  if (half === checkWholeNum) {
-	    flag = true
-	  }
-	//else
-	  //return flag
-	return flag;
+  return n === 0 ? true : n === 1 ? false : isEven(n - 2)
 };
 
 // 5. Sum all integers below a given integer.
@@ -320,7 +285,16 @@ var multiply = function(x, y) {
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods.
+let count = 0;
+let number = 0;
 var divide = function(x, y) {
+    x = x - y
+    count++
+  if(x > 0) {
+    divide(x, y)
+  }
+
+  return count
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
@@ -336,11 +310,29 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  let arr1 = str1.split("")
+  let arr2 = str2.split("")
+  let inner = function (str1, str2) {
+      if (arr1[0] === arr2[0]) {
+        arr1.shift()
+        arr2.shift()
+      }
+      if(arr1.length > 0 || arr2.lenght > 0) {
+        inner(str1, str2)
+      }
+  }
+  inner(str1, str2)
+  return arr1.length !== arr2.length ? false : true
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str) {
+var createArray = function(str,arr) {
+  if (str.length === 0) {
+    return [];
+  } else {
+  return createArray(str.slice(0,1),arr.push[str[0]])
+  }
 };
 
 // 17. Reverse the order of an array
