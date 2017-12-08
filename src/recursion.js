@@ -150,36 +150,45 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 1) {
+    return true
+  }
+  if (n < 1) {
+    return false
+  }
+  return powerOfTwo(n/2)
+  
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
-  //create new arr container
-  let revArr = [];
-  //split string into array
-  let splitArr = string.split("");
-  //create inner function
-  let innerRev = (string) => {
-    //create for loop iterating backwards
-    for (var i = splitArr.length - 1; i >= 0; --i) {;
-      //push last element in first
-      revArr.push(splitArr[splitArr.length - 1])
-      //cut out that elem from splitArr
-      splitArr.pop();
-    //close for loop
-    }
-    //if (splitArr.length !== 0) {
-    if (splitArr.length !== 0) {
-        // run inner function
-        innerRev(string);
-    // close condition
-    }
-  //close inner function
-  }
-  //invoke inner function
-  innerRev(string);
-  //return revArr.join("")
-  return revArr.join("");
+    return string === '' ? '' : string[string.length - 1] + reverse(string.substring(0, string.length - 1))
+  // //create new arr container
+  // let revArr = [];
+  // //split string into array
+  // let splitArr = string.split("");
+  // //create inner function
+  // let innerRev = (string) => {
+  //   //create for loop iterating backwards
+  //   for (var i = splitArr.length - 1; i >= 0; --i) {;
+  //     //push last element in first
+  //     revArr.push(splitArr[splitArr.length - 1])
+  //     //cut out that elem from splitArr
+  //     splitArr.pop();
+  //   //close for loop
+  //   }
+  //   //if (splitArr.length !== 0) {
+  //   if (splitArr.length !== 0) {
+  //       // run inner function
+  //       innerRev(string);
+  //   // close condition
+  //   }
+  // //close inner function
+  // }
+  // //invoke inner function
+  // innerRev(string);
+  // //return revArr.join("")
+  // return revArr.join("");
   
     // return arr.reverse().join("")
 };
