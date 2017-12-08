@@ -7,32 +7,21 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
-  if (n === 0 || n === 1) {
-    return 1
-  }
-  if (n < 0) {
-    return null
-  }
-  return n * factorial(n - 1)
+  return n === 0 || n === 1 ? 1 : n < 0 ? null : n * factorial(n - 1)
 };
 
 // 2. Compute the sum of an array of integers.
 let sumElem = function (array) {
-  if (array.length === 0) {
-    return 0
-  }
-  return array[0] + sumElem(array.slice(1)) //restart function with that value
+  return array.length === 0 ? 0 : array[0] + sumElem(array.slice(1)) 
+ //restart function with that value
 
 }
 
-sumElem([1,2,3,4,5,6]); // 21
-
-// }
-
-
-
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n < 0) {
+    n = n * - 1
+  }
   return n === 0 ? true : n === 1 ? false : isEven(n - 2)
 };
 
@@ -41,7 +30,7 @@ var isEven = function(n) {
 // sumBelow(7); // 21
 var sumBelow = function(n) {
   //create container for array
-  return n === 0 ? 0 : (n-1) + sumBelow(n - 1)
+  return n === 0 ? 0 : (n - 1) + sumBelow(n - 1)
 
   // let sumBelowArray = [];
   // //create var for sum = 0
